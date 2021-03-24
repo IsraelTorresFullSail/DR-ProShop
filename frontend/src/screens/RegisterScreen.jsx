@@ -14,7 +14,7 @@ const RegisterScreen = ({ location, history }) => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
 
-  const disppatch = useDispatch()
+  const dispatch = useDispatch()
 
   const userRegister = useSelector((state) => state.userRegister)
 
@@ -33,7 +33,7 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage('Password do not match')
     } else {
-      disppatch(register(name, email, password))
+      dispatch(register(name, email, password))
     }
   }
 
