@@ -23,6 +23,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
   const [description, setDescription] = useState('')
+  const [numReviews, setNumReviews] = useState(0)
   const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
@@ -47,7 +48,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (successCreate) {
-      history.push(`/admin/product/${createdProduct._id}`)
+      history.push('/admin/productlist')
     }
     if (!productId) return
     if (successUpdate) {
@@ -64,6 +65,7 @@ const ProductEditScreen = ({ match, history }) => {
         setCategory(product.category)
         setCountInStock(product.countInStock)
         setDescription(product.description)
+        setNumReviews(product.numReviews)
       }
     }
   }, [
@@ -106,6 +108,7 @@ const ProductEditScreen = ({ match, history }) => {
           _id: productId,
           name,
           price,
+          image,
           brand,
           category,
           description,
@@ -117,10 +120,12 @@ const ProductEditScreen = ({ match, history }) => {
         createProduct({
           name,
           price,
+          image,
           brand,
           category,
           description,
           countInStock,
+          numReviews,
         })
       )
     }
